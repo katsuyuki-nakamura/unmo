@@ -1,11 +1,15 @@
 package whatresponder
 
+import (
+	"github.com/katsuyuki-nakamura/unmo/responder"
+)
+
 // responder
 type WhatResponder struct {
 	name string
 }
 
-func NewWhatResponder() *WhatResponder {
+func NewWhatResponder() responder.Responder {
 	r := &(WhatResponder{name: "What"})
 	return r
 }

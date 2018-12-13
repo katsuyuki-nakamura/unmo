@@ -1,6 +1,11 @@
 package randomresponder
 
-import "math/rand"
+import (
+	"math/rand"
+
+	"github.com/katsuyuki-nakamura/unmo/dictionary"
+	"github.com/katsuyuki-nakamura/unmo/responder"
+)
 
 // responder
 type RandomResponder struct {
@@ -8,13 +13,19 @@ type RandomResponder struct {
 	responses []string
 }
 
-func NewRandomResponder() *RandomResponder {
-	r := &(RandomResponder{name: "Random", responses: []string{"今日はさむいね", "チョコたべたい", "きのう10円ひろった"}})
+func selectRandom(responses []string) string {
+	return responses[rand.Intn(len(responses))]
+}
+func NewRandomResponder() responder.Responder {
+
+	r := new(RandomResponder)
+	r.name = "Random"
+	r.responses = dictionary.GetInstance().Random()
 	return r
 }
 
 func (r RandomResponder) Response(input string) string {
-	return r.responses[rand.Intn(len(r.responses))]
+	return selectRandom(r.responses)
 }
 
 func (r RandomResponder) Name() string {
