@@ -2,17 +2,19 @@ package unmo
 
 import (
 	"github.com/katsuyuki-nakamura/unmo/responder"
+	randomresponder "github.com/katsuyuki-nakamura/unmo/responder/random"
 )
 
 type Unmo struct {
 	name      string
-	responder *responder.Responder
+	responder responder.Responder
 }
 
 func NewUnmo(name string) *Unmo {
 	u := new(Unmo)
 	u.name = name
-	u.responder = responder.NewResponder("What")
+	//	u.responder = whatresponder.NewWhatResponder()
+	u.responder = randomresponder.NewRandomResponder()
 	return u
 }
 
